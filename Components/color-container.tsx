@@ -7,6 +7,8 @@ import { ColorSection, ColorSwatch } from './types';
 interface ColorContainerProps {
   title: ColorSection;
   message?: string;
+  maxRows?: number;
+  addRowToColor?(section: ColorSection): void;
   colors: ColorSwatch[];
 }
 
@@ -24,6 +26,11 @@ export default class ColorContainer extends React.Component<
 > {
   state = {
     showMessage: false
+  };
+
+  defaultProps = {
+    maxRows: 1,
+    addRowToColor: () => undefined
   };
 
   toggleMessage = () => this.setState({ showMessage: !this.state.showMessage });
@@ -51,9 +58,22 @@ export default class ColorContainer extends React.Component<
           <ColorRow title={title} colors={row} index={index} />
         ))}
 
+        {this.props.maxRows !== 1 &&
+          (colors.length < this.props.maxRows! ||
+            this.props.maxRows === Infinity) && (
+            <button
+              className="button is-dark add-button"
+              onClick={() => this.props.addRowToColor!(title)}
+            >
+              Add
+            </button>
+          )}
+
         <style jsx>{`
           .wrapper {
             margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
           }
 
           .wrapper .title {
@@ -71,6 +91,10 @@ export default class ColorContainer extends React.Component<
 
           .info-icon:hover {
             color: #42abf3;
+          }
+
+          .add-button {
+            margin-left: auto;
           }
         `}</style>
       </div>

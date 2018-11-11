@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { ChromePicker } from 'react-color';
 import { ColorSection, ColorType } from '../Components/types';
+import fontColor from 'font-color-contrast';
 
 import { makeColor } from '../Components/utils';
 import ColorSelectionContext from '../Components/color-selection-context';
 import ColorContainer from '../Components/color-container';
 
-const Preview = ({ 
-children }) => (
+const Preview = ({ children }) => (
   <section className="header">
     <h1 className="title has-text-white  has-text-centered">
       Color Palette Helper
@@ -65,11 +65,11 @@ const PseudoButtons = () => (
 
     <style jsx>{`
       .mac-buttons {
-    position: absolute;
-    top: 10px;
-    margin-left: 18px;
-    z-index: 2;
-    left: 0;
+        position: absolute;
+        top: 10px;
+        margin-left: 18px;
+        z-index: 2;
+        left: 0;
       }
     `}</style>
   </div>
@@ -103,15 +103,24 @@ export default class Index extends React.Component {
       console.log(currentSection);
     }
 
-    this.setState({
-      [section]: currentSection
-    });
+    this.setState({ currentColors: this.state.currentColors });
   };
 
   setCurrentColor = (section: ColorSection, index: number, type: ColorType) => {
     this.setState({
       currentColor: [section, index, type]
     });
+  };
+
+  addRowToColor = (section: ColorSection) => {
+    const currentSection = this.state.currentColors[section];
+
+    if (!currentSection) {
+      return;
+    }
+
+    currentSection.push(makeColor());
+    this.setState({ currentColors: this.state.currentColors });
   };
 
   state = {
@@ -121,12 +130,12 @@ export default class Index extends React.Component {
       [ColorSection.grey]: [makeColor()],
       [ColorSection.accent]: [makeColor(), makeColor(), makeColor()]
     },
-    setColor: this.setColor,
     setCurrentColor: this.setCurrentColor
   };
 
   render() {
     const [section, index, type] = this.state.currentColor;
+    const primary = this.state.currentColors[ColorSection.primary][0]['500'];
 
     let currentColor = 'grey';
 
@@ -144,15 +153,28 @@ export default class Index extends React.Component {
         <div className="root">
           <div className="sections">
             <div className="mac-wrapper has-text-white">
-            <PseudoButtons />
-              {Object.entries(this.state.currentColors).map(
-                ([section, colors]) => (
-                  <ColorContainer
-                    title={section as ColorSection}
-                    colors={colors}
-                  />
-                )
-              )}
+              <PseudoButtons />
+              <ColorContainer
+                title={ColorSection.primary}
+                colors={this.state.currentColors[ColorSection.primary]}
+                maxRows={2}
+                addRowToColor={this.addRowToColor}
+              />
+              <ColorContainer
+                title={ColorSection.grey}
+                colors={this.state.currentColors[ColorSection.grey]}
+              />
+              <ColorContainer
+                title={ColorSection.accent}
+                colors={this.state.currentColors[ColorSection.accent]}
+                addRowToColor={this.addRowToColor}
+                maxRows={Infinity}
+              />
+              <div className="button-wrapper">
+                <button className="button export-button is-medium">
+                  Export
+                </button>
+              </div>
             </div>
           </div>
 
@@ -194,6 +216,15 @@ export default class Index extends React.Component {
           }
           :global(.chrome-picker) {
             width: 30vw !important;
+          }
+          .button-wrapper {
+            margin: 2rem 0;
+            text-align: center;
+          }
+          .export-button {
+            border: none;
+            color: ${fontColor(primary)};
+            background-color: ${primary};
           }
         `}</style>
       </ColorSelectionContext.Provider>

@@ -2775,6 +2775,11 @@ flush-write-stream@^1.0.0:
     inherits "^2.0.1"
     readable-stream "^2.0.4"
 
+font-color-contrast@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/font-color-contrast/-/font-color-contrast-1.0.3.tgz#77d88ff97c6bd095cfa9dfeb44624ba8ad717b6c"
+  integrity sha1-d9iP+Xxr0JXPqd/rRGJLqK1xe2w=
+
 for-in@^1.0.1, for-in@^1.0.2:
   version "1.0.2"
   resolved "https://registry.npmjs.intuit.com:443/artifactory/api/npm/npm-intuit/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"

@@ -52,6 +52,7 @@
     "@types/react-color": "^2.13.6",
     "@types/styled-jsx": "^2.2.7",
     "@zeit/next-typescript": "^1.1.1",
+    "font-color-contrast": "^1.0.3",
     "next": "^7.0.2",
     "react": "^16.6.1",
     "react-color": "^2.14.1",
