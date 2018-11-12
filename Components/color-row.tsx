@@ -35,6 +35,27 @@ const ColorRow: React.SFC<ColorRowProps> = ({ title, index, colors }) => (
                 margin: auto;
                 justify-content: space-between;
                 margin-bottom: 1rem;
+                flex-wrap: wrap;
+              }
+
+              .row > :global(*) {
+                flex-basis: 29%;
+                margin-right: 1%;
+              }
+
+              @media screen and (min-width: 767px) {
+                .row > :global(*) {
+                  flex-basis: 20%;
+                }
+              }
+
+              @media screen and (min-width: 1100px) {
+                .row {
+                  flex-wrap: unset;
+                }
+                .row > :global(*) {
+                  flex-basis: 50px;
+                }
               }
             `}</style>
           </div>

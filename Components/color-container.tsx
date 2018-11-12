@@ -37,7 +37,7 @@ export default class ColorContainer extends React.Component<
     const { title, colors } = this.props;
 
     return (
-      <div className="wrapper">
+      <div className="color-container">
         <div className="header">
           <h1 className="title has-text-white">{title} </h1>
           <span
@@ -53,7 +53,12 @@ export default class ColorContainer extends React.Component<
         )}
 
         {colors.map((row, index) => (
-          <ColorRow key={`title-${index}`} title={title} colors={row} index={index} />
+          <ColorRow
+            key={`title-${index}`}
+            title={title}
+            colors={row}
+            index={index}
+          />
         ))}
 
         {this.props.maxRows !== 1 &&
@@ -68,13 +73,13 @@ export default class ColorContainer extends React.Component<
           )}
 
         <style jsx>{`
-          .wrapper {
+          .color-container {
             margin-bottom: 2rem;
             display: flex;
             flex-direction: column;
           }
 
-          .wrapper .title {
+          .color-container .title {
             margin-bottom: 0;
           }
 

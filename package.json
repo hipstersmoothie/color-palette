@@ -63,6 +63,7 @@
     "@types/file-saver": "^2.0.0",
     "@types/react": "^16.7.1",
     "@types/react-color": "^2.13.6",
+    "@types/react-joyride": "^2.0.1",
     "@types/styled-jsx": "^2.2.7",
     "@types/tinycolor2": "^1.4.1",
     "bulma-badge": "^2.0.0",
@@ -73,6 +74,7 @@
     "react": "^16.6.1",
     "react-color": "^2.14.1",
     "react-dom": "^16.6.1",
+    "react-joyride": "^2.0.0-15",
     "tinycolor2": "^1.4.1"
   },
   "babel": {

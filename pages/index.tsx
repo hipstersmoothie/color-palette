@@ -12,6 +12,7 @@ import PresetButton from '../Components/preset-button';
 import { makeColor } from '../Components/utils';
 import Options from '../Components/options';
 import OptionsContext from '../Components/options-context';
+import Walkthrough from '../Components/walkthrough';
 
 interface PreviewProps {
   children: React.ReactNode;
@@ -24,7 +25,7 @@ const Preview: React.SFC<PreviewProps> = ({ children, color }) => (
       Color Palette Helper
     </h1>
 
-    <div className="section">{children}</div>
+    <div className="section preview-body">{children}</div>
 
     <style jsx>{`
       .header .preview-title {
@@ -36,6 +37,15 @@ const Preview: React.SFC<PreviewProps> = ({ children, color }) => (
         justify-content: center;
         flex: 1;
         flex-direction: column;
+      }
+      .preview-body {
+        display: flex;
+        flex-direction: column-reverse;
+      }
+      @media screen and (min-width: 767px) {
+        .preview-body {
+          flex-direction: column;
+        }
       }
     `}</style>
   </section>
@@ -184,7 +194,9 @@ export default class Index extends React.Component {
                 />
               </div>
               <MacWindow className="options">
-                <Options currentColor={currentColor} />
+                <Options primaryColor={primary!} />
+                <Walkthrough />
+
                 <div className="button-wrapper">
                   <PresetButton />
 
@@ -203,24 +215,22 @@ export default class Index extends React.Component {
             }
             .root {
               display: flex;
+              flex-direction: column-reverse;
             }
             :global(.sections) {
               display: flex;
               align-items: center;
               flex-direction: column;
-              max-height: 100vh;
-              overflow: scroll;
               flex: 1.2;
               padding: 2rem 0;
             }
             :global(.sections::-webkit-scrollbar) {
               display: none;
             }
-            .picker-wrapper {
-              margin-bottom: 3rem;
-            }
+            
             :global(.chrome-picker) {
-              width: 30vw !important;
+              margin: auto;
+              width: 80vw !important;
             }
             .button-wrapper {
               margin: 2rem 0;
@@ -232,9 +242,11 @@ export default class Index extends React.Component {
               background-color: ${primary};
             }
             :global(.options) {
+              position: relative;
               display: flex;
               align-items: center;
               flex-direction: column;
+              margin-bottom: 3rem;
             }
             :global(.options > *) {
               width: 100%;
@@ -243,6 +255,26 @@ export default class Index extends React.Component {
               position: absolute;
               right: 10px;
               top: 10px;
+            }
+
+            @media screen and (min-width: 767px) {
+              :global(.sections) {
+                max-height: 100vh;
+          
+                overflow: scroll;
+              }
+              .root {
+                flex-direction: row;
+              }
+              :global(.chrome-picker) {
+                width: 30vw !important;
+              }
+              .picker-wrapper {
+                margin-bottom: 3rem;
+              }
+             :global(.options) {
+                margin-bottom: 0;
+              }
             }
           `}</style>
         </ColorSelectionContext.Provider>

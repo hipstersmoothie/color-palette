@@ -4,10 +4,10 @@ import CheckBox from './checkbox';
 import OptionsContext from './options-context';
 
 interface OptionsProps {
-  currentColor: string;
+  primaryColor: string;
 }
 
-const Options: React.SFC<OptionsProps> = ({ currentColor }) => (
+const Options: React.SFC<OptionsProps> = ({ primaryColor }) => (
   <OptionsContext.Consumer>
     {({ showLabels, autoScale, toggleCheckBox }) => (
       <React.Fragment>
@@ -15,14 +15,14 @@ const Options: React.SFC<OptionsProps> = ({ currentColor }) => (
           id="auto-scale"
           label="Automatically Scale Colors"
           isChecked={autoScale}
-          currentColor={currentColor}
+          primaryColor={primaryColor}
           onChange={toggleCheckBox('autoScale')}
         />
         <CheckBox
           id="show-labels"
           label="Show Shade Labels"
           isChecked={showLabels}
-          currentColor={currentColor}
+          primaryColor={primaryColor}
           onChange={toggleCheckBox('showLabels')}
         />
       </React.Fragment>

@@ -4,7 +4,7 @@ import fontColor from 'font-color-contrast';
 interface CheckBoxProps {
   id: string;
   label: string;
-  currentColor: string;
+  primaryColor: string;
   isChecked: boolean;
   onChange(event: React.ChangeEvent<HTMLInputElement>): void;
 }
@@ -13,10 +13,10 @@ const CheckBox: React.SFC<CheckBoxProps> = ({
   isChecked,
   id,
   label,
-  currentColor,
+  primaryColor,
   onChange
 }) => (
-  <div className="field check-box">
+  <div className="field check-box" id={`${id}-wrapper`}>
     <input
       className="is-checkradio is-white radio"
       id={id}
@@ -29,8 +29,8 @@ const CheckBox: React.SFC<CheckBoxProps> = ({
 
     <style jsx>{`
       .check-box label::before {
-        background-color: ${fontColor(currentColor)};
-        border-color: ${fontColor(currentColor)};
+        background-color: ${fontColor(primaryColor)};
+        border-color: ${fontColor(primaryColor)};
       }
 
       .check-box
@@ -39,7 +39,7 @@ const CheckBox: React.SFC<CheckBoxProps> = ({
       .check-box
         .is-checkradio[type='checkbox'].is-white:checked
         + label:after {
-        border-color: ${currentColor} !important;
+        border-color: ${primaryColor} !important;
       }
     `}</style>
   </div>

@@ -62,6 +62,7 @@ const MacWindow: React.SFC<MacWindowProps> = ({
 
     <style jsx>{`
       .mac-wrapper {
+        max-width: calc(100% - 4rem);
         background: #292a2b;
         border-radius: 5px;
         padding: 48px 2rem 0;
