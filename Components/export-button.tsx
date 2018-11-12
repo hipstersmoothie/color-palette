@@ -1,11 +1,11 @@
-import * as React from 'react';
 import FileSaver from 'file-saver';
 import fontColor from 'font-color-contrast';
+import * as React from 'react';
 
+import Input from './input';
 import Modal from './modal';
 import Select from './select';
-import Input from './input';
-import { ColorSwatch, ColorShade, ColorMap } from './types';
+import { ColorMap, ColorShade, ColorSwatch } from './types';
 
 interface PreviewButtonProps {
   color: string;
@@ -75,7 +75,7 @@ const saveSass = (colors: { [key: string]: { [key: string]: string } }) => {
 };
 
 class ExportButton extends React.Component<PreviewButtonProps> {
-  state: ExportState;
+  public state: ExportState;
 
   constructor(props: PreviewButtonProps) {
     super(props);
@@ -89,7 +89,7 @@ class ExportButton extends React.Component<PreviewButtonProps> {
       colorLabels['primary-color-1'] = 'primary-1';
     }
 
-    colorLabels['grey'] = 'grey';
+    colorLabels.grey = 'grey';
 
     times(props.currentColors.accent.length, i => {
       colorLabels[`accent-color-${i}`] = `accent-${i}`;
@@ -114,18 +114,18 @@ class ExportButton extends React.Component<PreviewButtonProps> {
     };
   }
 
-  openModal = () => {
+  public openModal = () => {
     this.setState({ modalOpen: true });
   };
 
-  closeModal = () => {
+  public closeModal = () => {
     this.setState({ modalOpen: false });
   };
 
-  setFormat = (event: React.ChangeEvent<HTMLSelectElement>) =>
+  public setFormat = (event: React.ChangeEvent<HTMLSelectElement>) =>
     this.setState({ format: event.currentTarget.value });
 
-  useLabels = (color: ColorSwatch) => {
+  public useLabels = (color: ColorSwatch) => {
     return {
       [this.state.shadeLabels[100]]: color.get(100)!,
       [this.state.shadeLabels[200]]: color.get(200)!,
@@ -139,7 +139,7 @@ class ExportButton extends React.Component<PreviewButtonProps> {
     };
   };
 
-  save = () => {
+  public save = () => {
     const colors: { [key: string]: { [key: string]: string } } = {};
 
     this.props.currentColors.primary.map((color, index) => {
@@ -148,7 +148,7 @@ class ExportButton extends React.Component<PreviewButtonProps> {
       );
     });
 
-    colors[this.state.colorLabels['grey']] = this.useLabels(
+    colors[this.state.colorLabels.grey] = this.useLabels(
       this.props.currentColors.grey[0]
     );
 
@@ -174,7 +174,7 @@ class ExportButton extends React.Component<PreviewButtonProps> {
     }
   };
 
-  setLabel = (type: 'color' | 'shade', key: string | ColorShade) => (
+  public setLabel = (type: 'color' | 'shade', key: string | ColorShade) => (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     if (type === 'color') {
@@ -186,7 +186,7 @@ class ExportButton extends React.Component<PreviewButtonProps> {
     }
   };
 
-  render() {
+  public render() {
     return (
       <React.Fragment>
         <button

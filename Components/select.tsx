@@ -4,8 +4,8 @@ interface SelectProps {
   tags: string[];
   placeholder: string;
   className?: string;
-  onChooseTag: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   tag?: string;
+  onChooseTag(event: React.ChangeEvent<HTMLSelectElement>): void;
 }
 
 const Select: React.SFC<SelectProps> = ({
@@ -23,8 +23,8 @@ const Select: React.SFC<SelectProps> = ({
         <select value={tag} onChange={onChooseTag}>
           <option value="none">{placeholder}</option>
 
-          {tags.map(tag => (
-            <option key={tag}>{tag}</option>
+          {tags.map(tagOption => (
+            <option key={tagOption}>{tagOption}</option>
           ))}
         </select>
       </div>

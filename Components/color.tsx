@@ -4,7 +4,7 @@ import { ColorShade } from './types';
 interface ColorProps {
   color?: string;
   shade?: ColorShade;
-  onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
+  onClick?(event: React.MouseEvent<HTMLDivElement>): void;
 }
 
 const Color: React.SFC<ColorProps> = ({ color, onClick, shade }) => (

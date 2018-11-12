@@ -1,15 +1,15 @@
+import fontColor from 'font-color-contrast';
 import * as React from 'react';
 import { ChromePicker } from 'react-color';
-import { ColorSection, ColorShade, ColorSwatch } from '../Components/types';
-import fontColor from 'font-color-contrast';
 import tinycolor from 'tinycolor2';
+import { ColorSection, ColorShade, ColorSwatch } from '../Components/types';
 
-import { makeColor } from '../Components/utils';
-import ColorSelectionContext from '../Components/color-selection-context';
 import ColorContainer from '../Components/color-container';
+import ColorSelectionContext from '../Components/color-selection-context';
+import ExportButton from '../Components/export-button';
 import MacWindow from '../Components/mac-window';
 import PresetButton from '../Components/preset-button';
-import ExportButton from '../Components/export-button';
+import { makeColor } from '../Components/utils';
 
 interface PreviewProps {
   children: React.ReactNode;
@@ -52,7 +52,18 @@ const calcRange = (color: string, section: ColorSwatch[], index: number) => {
 };
 
 export default class Index extends React.Component {
-  setColor = (
+  public state = {
+    currentColor: ['primary', 0, 500] as [ColorSection, number, ColorShade],
+    currentColors: {
+      [ColorSection.primary]: [makeColor()],
+      [ColorSection.grey]: [makeColor()],
+      [ColorSection.accent]: [makeColor(), makeColor(), makeColor()]
+    },
+    setColor: this.setColor,
+    setCurrentColor: this.setCurrentColor
+  };
+
+  private setColor = (
     section: ColorSection,
     index: number,
     shade: ColorShade,
@@ -78,7 +89,7 @@ export default class Index extends React.Component {
     this.setState({ currentColors: this.state.currentColors });
   };
 
-  setCurrentColor = (
+  private setCurrentColor = (
     section: ColorSection,
     index: number,
     shade: ColorShade
@@ -88,30 +99,19 @@ export default class Index extends React.Component {
     });
   };
 
-  addRowToColor = (section: ColorSection) => {
+  private addRowToColor = (section: ColorSection) => {
     const currentSection = this.state.currentColors[section];
     currentSection.push(makeColor());
     this.setState({ currentColors: this.state.currentColors });
   };
 
-  state = {
-    currentColor: ['primary', 0, 500] as [ColorSection, number, ColorShade],
-    currentColors: {
-      [ColorSection.primary]: [makeColor()],
-      [ColorSection.grey]: [makeColor()],
-      [ColorSection.accent]: [makeColor(), makeColor(), makeColor()]
-    },
-    setColor: this.setColor,
-    setCurrentColor: this.setCurrentColor
-  };
-
-  render() {
+  public render() {
     const [section, index, shade] = this.state.currentColor;
     const primary = this.state.currentColors[ColorSection.primary][0].get(500);
 
     let currentColor = 'grey';
 
-    if (section && index !== undefined && shade) {
+    if (section && shade) {
       currentColor = this.state.currentColors[section][index].get(shade)!;
     }
 

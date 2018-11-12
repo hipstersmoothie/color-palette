@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Modal from './modal';
 
-import palettes from './palettes';
 import Color from './color';
 import ColorSelectionContext from './color-selection-context';
+import palettes from './palettes';
 import { ColorSection } from './types';
 
 interface Palette {
@@ -19,23 +19,23 @@ interface Palette {
 }
 
 class PresetButton extends React.Component {
-  state: { modalOpen: boolean; selectedPalette?: Palette } = {
+  public state: { modalOpen: boolean; selectedPalette?: Palette } = {
     modalOpen: false
   };
 
-  openModal = () => {
+  public openModal = () => {
     this.setState({ modalOpen: true });
   };
 
-  closeModal = () => {
+  public closeModal = () => {
     this.setState({ modalOpen: false });
   };
 
-  setPalette = (selectedPalette: Palette) => {
+  public setPalette = (selectedPalette: Palette) => {
     this.setState({ selectedPalette });
   };
 
-  render() {
+  public render() {
     return (
       <React.Fragment>
         <button className="button preset-button" onClick={this.openModal}>

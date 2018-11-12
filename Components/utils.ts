@@ -1,4 +1,4 @@
-import { ColorSwatch, ColorShade } from './types';
+import { ColorShade, ColorSwatch } from './types';
 
 export const makeColor = (): ColorSwatch =>
   new Map<ColorShade, string>([

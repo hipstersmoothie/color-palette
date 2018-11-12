@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import Color from '../Components/color';
 import ColorSelectionContext from './color-selection-context';
-import { ColorSwatch, ColorSection, ColorShade } from './types';
+import { ColorSection, ColorShade, ColorSwatch } from './types';
 
 interface ColorRowProps {
   colors: ColorSwatch;

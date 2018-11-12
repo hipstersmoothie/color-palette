@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { makeColor } from './utils';
 import { ColorSelectionContextShape } from './types';
+import { makeColor } from './utils';
 
 const ColorsSwatches: ColorSelectionContextShape = {
   currentColors: {

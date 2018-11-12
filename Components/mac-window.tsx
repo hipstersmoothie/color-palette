@@ -2,12 +2,7 @@ import * as React from 'react';
 
 const PseudoButtons = () => (
   <div className="mac-buttons">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="54"
-      height="14"
-      viewBox="0 0 54 14"
-    >
+    <svg width="54" height="14" viewBox="0 0 54 14">
       <g fill="none" fill-rule="evenodd" transform="translate(1 1)">
         <circle
           cx="6"

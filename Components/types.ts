@@ -15,16 +15,12 @@ export interface ColorMap {
 }
 
 export interface ColorSelectionContextShape {
-  setCurrentColor: (
-    title: ColorSection,
-    index: number,
-    shade: ColorShade
-  ) => void;
-  setColor: (
+  currentColors: ColorMap;
+  setCurrentColor(title: ColorSection, index: number, shade: ColorShade): void;
+  setColor(
     title: ColorSection,
     index: number,
     shade: ColorShade,
     color: string
-  ) => void;
-  currentColors: ColorMap;
+  ): void;
 }

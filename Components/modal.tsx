@@ -6,8 +6,8 @@ interface ModalProps {
   submitText: string;
   children: React.ReactNode;
   isSubmitActive: boolean;
-  onClose: () => void;
-  onSubmit?: () => void;
+  onClose(): void;
+  onSubmit?(): void;
 }
 
 const Modal: React.SFC<ModalProps> = ({
@@ -19,7 +19,7 @@ const Modal: React.SFC<ModalProps> = ({
   submitText,
   isSubmitActive
 }) => (
-  <div style={{textAlign: 'left'}} className={`modal has-text-dark ${isOpen ? 'is-active' : ''}`}>
+  <div style={{ textAlign: 'left' }} className={`modal has-text-dark ${isOpen ? 'is-active' : ''}`}>
     <div className="modal-background" onClick={onClose} />
     <div className="modal-card">
       <header className="modal-card-head">

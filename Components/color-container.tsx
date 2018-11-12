@@ -8,8 +8,8 @@ interface ColorContainerProps {
   title: ColorSection;
   message?: string;
   maxRows?: number;
-  addRowToColor?(section: ColorSection): void;
   colors: ColorSwatch[];
+  addRowToColor?(section: ColorSection): void;
 }
 
 const ColorMessaging = {
@@ -24,18 +24,16 @@ const ColorMessaging = {
 export default class ColorContainer extends React.Component<
   ColorContainerProps
 > {
-  state = {
+  public state = {
     showMessage: false
   };
 
-  defaultProps = {
+  public defaultProps = {
     maxRows: 1,
     addRowToColor: () => undefined
   };
 
-  toggleMessage = () => this.setState({ showMessage: !this.state.showMessage });
-
-  render() {
+  public render() {
     const { title, colors } = this.props;
 
     return (
@@ -100,4 +98,7 @@ export default class ColorContainer extends React.Component<
       </div>
     );
   }
+
+  private readonly toggleMessage = () =>
+    this.setState({ showMessage: !this.state.showMessage });
 }
