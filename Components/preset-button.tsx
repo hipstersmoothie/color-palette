@@ -70,7 +70,7 @@ class PresetButton extends React.Component {
               >
                 <div className="palette-wrapper">
                   {palettes.map(palette => (
-                    <div className="palette-preview-root">
+                    <div className="palette-preview-root" key={palette.id}>
                       <div
                         className={`card palette-preview badge is-badge-danger is-badge-left ${
                           this.state.selectedPalette &&

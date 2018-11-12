@@ -28,7 +28,7 @@ export default class ColorContainer extends React.Component<
     showMessage: false
   };
 
-  public defaultProps = {
+  public static defaultProps = {
     maxRows: 1,
     addRowToColor: () => undefined
   };
@@ -53,7 +53,7 @@ export default class ColorContainer extends React.Component<
         )}
 
         {colors.map((row, index) => (
-          <ColorRow title={title} colors={row} index={index} />
+          <ColorRow key={`title-${index}`} title={title} colors={row} index={index} />
         ))}
 
         {this.props.maxRows !== 1 &&

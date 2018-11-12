@@ -58,9 +58,7 @@ export default class Index extends React.Component {
       [ColorSection.primary]: [makeColor()],
       [ColorSection.grey]: [makeColor()],
       [ColorSection.accent]: [makeColor(), makeColor(), makeColor()]
-    },
-    setColor: this.setColor,
-    setCurrentColor: this.setCurrentColor
+    }
   };
 
   private setColor = (
@@ -116,7 +114,13 @@ export default class Index extends React.Component {
     }
 
     return (
-      <ColorSelectionContext.Provider value={this.state}>
+      <ColorSelectionContext.Provider
+        value={{
+          ...this.state,
+          setColor: this.setColor,
+          setCurrentColor: this.setCurrentColor
+        }}
+      >
         <div className="root">
           <PresetButton />
           <MacWindow hasButtons className="sections has-text-white">

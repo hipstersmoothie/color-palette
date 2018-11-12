@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import Color from '../Components/color';
 import ColorSelectionContext from './color-selection-context';
-import { ColorSection, ColorShade, ColorSwatch } from './types';
+import { ColorSwatch, ColorSection, ColorShade } from './types';
 
 interface ColorRowProps {
   colors: ColorSwatch;
@@ -16,6 +16,7 @@ const ColorRow: React.SFC<ColorRowProps> = ({ title, index, colors }) => (
       <div className="row">
         {[...colors.entries()].map(([shade, color]) => (
           <Color
+            key={`${color}-${shade}`}
             shade={shade}
             color={color}
             onClick={() =>

@@ -223,6 +223,7 @@ class ExportButton extends React.Component<PreviewButtonProps> {
           <div className="columns is-multiline field shades">
             {times(this.props.currentColors.primary.length, index => (
               <Input
+                key={`primary-color-${index}`}
                 label={`Primary Color${
                   this.props.currentColors.primary.length === 1 ? '' : index
                 }`}
@@ -233,12 +234,14 @@ class ExportButton extends React.Component<PreviewButtonProps> {
             ))}
             <Input
               label="Grey"
+              key='grey'
               value={this.state.colorLabels.grey}
               className="column is-one-third"
               onChange={this.setLabel('color', 'grey')}
             />
             {times(this.props.currentColors.accent.length, index => (
               <Input
+                key={`accent-color-${index}`}
                 label={`Accent Color ${index}`}
                 value={this.state.colorLabels[`accent-color-${index}`]}
                 className="column is-one-third"
