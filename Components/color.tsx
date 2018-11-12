@@ -4,13 +4,14 @@ import { ColorShade } from './types';
 interface ColorProps {
   color?: string;
   shade?: ColorShade;
+  showLabel: boolean;
   onClick?(event: React.MouseEvent<HTMLDivElement>): void;
 }
 
-const Color: React.SFC<ColorProps> = ({ color, onClick, shade }) => (
+const Color: React.SFC<ColorProps> = ({ color, onClick, shade, showLabel }) => (
   <div className="wrapper" onClick={onClick}>
     <div className="color" />
-    {shade && <span className="shade">{shade}</span>}
+    {shade && showLabel && <span className="shade">{shade}</span>}
 
     <style jsx>{`
       .color {

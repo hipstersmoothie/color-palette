@@ -189,10 +189,7 @@ class ExportButton extends React.Component<PreviewButtonProps> {
   public render() {
     return (
       <React.Fragment>
-        <button
-          className="button export-button is-medium"
-          onClick={this.openModal}
-        >
+        <button className="button export-button" onClick={this.openModal}>
           Export
         </button>
         <Modal
@@ -234,7 +231,7 @@ class ExportButton extends React.Component<PreviewButtonProps> {
             ))}
             <Input
               label="Grey"
-              key='grey'
+              key="grey"
               value={this.state.colorLabels.grey}
               className="column is-one-third"
               onChange={this.setLabel('color', 'grey')}

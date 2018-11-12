@@ -1843,6 +1843,11 @@ bulma-badge@^2.0.0:
   resolved "https://registry.yarnpkg.com/bulma-badge/-/bulma-badge-2.0.0.tgz#7c7f8fee805400fa35117a43c80f5f9784f3d513"
   integrity sha512-4uNfE9KTZLe4pGzxqQTPStQjY6HvAubrVWkieek9DjdSfVSt9D8mViC2AVx+uecdERcoILjLClrwDMtExyJU0Q==
 
+bulma-checkradio@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/bulma-checkradio/-/bulma-checkradio-2.1.0.tgz#494ab05b0245a41a0083bbd08436fafbde4b3814"
+  integrity sha512-u/EBioHqmeMaUyVc+P9ellOldIVER4SSzkCYo7+KOBAIZuRm6zRWKste8DAFfsk8sq2xrX16gKXr7vCy7NC0zw==
+
 cacache@^10.0.4:
   version "10.0.4"
   resolved "https://registry.npmjs.intuit.com:443/artifactory/api/npm/npm-intuit/cacache/-/cacache-10.0.4.tgz#6452367999eff9d4188aefd9a14e9d7c6a263460"
@@ -2904,11 +2909,6 @@ extsprintf@^1.2.0:
   version "1.4.0"
   resolved "https://registry.npmjs.intuit.com:443/artifactory/api/npm/npm-intuit/extsprintf/-/extsprintf-1.4.0.tgz#e2689f8f356fad62cca65a3a91c5df5f9551692f"
   integrity sha1-4mifjzVvrWLMplo6kcXfX5VRaS8=
-
-fast-clone@^1.5.3:
-  version "1.5.3"
-  resolved "https://registry.yarnpkg.com/fast-clone/-/fast-clone-1.5.3.tgz#2faa7a825054e9fc8be5024fb09a266ed2cd9fe7"
-  integrity sha512-o+FDnlwswtBJqisjSmHdyMVcPZCZYTX7sBHTBLYQKYSiwp8QlFfU/ucSsnbDzdMTrRwzaIXuD+EXIFWIvga1uQ==
 
 fast-deep-equal@^1.0.0:
   version "1.1.0"

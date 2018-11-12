@@ -100,9 +100,7 @@ class PresetButton extends React.Component {
 
         <style jsx>{`
           .preset-button {
-            position: absolute;
-            right: 10px;
-            top: 10px;
+            margin-right: 15px;
           }
           .colors-wrapper {
             display: flex;

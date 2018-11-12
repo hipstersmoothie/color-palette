@@ -24,3 +24,9 @@ export interface ColorSelectionContextShape {
     color: string
   ): void;
 }
+
+export interface OptionsContextShape {
+  showLabels: boolean;
+  autoScale: boolean;
+  toggleCheckBox(key: 'showLabels' | 'autoScale'): () => void;
+}
