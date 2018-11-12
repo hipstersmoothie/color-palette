@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { ColorSelectionContextShape } from './types';
-import { makeColor } from './utils';
 
 const ColorsSwatches: ColorSelectionContextShape = {
   currentColors: {
-    primary: [makeColor()],
-    grey: [makeColor()],
-    accent: [makeColor(), makeColor(), makeColor()]
+    primary: [],
+    grey: [],
+    accent: []
   },
   setColor: () => undefined,
   setCurrentColor: () => undefined
