@@ -25,6 +25,11 @@ export default class MyDocument extends Document {
             type="text/css"
             href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css"
           />
+          <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.jsdelivr.net/npm/bulma-badge@2.0.0/dist/css/bulma-badge.min.css"
+          />
         </Head>
         <body className="custom_class has-background-light">
           <Main />

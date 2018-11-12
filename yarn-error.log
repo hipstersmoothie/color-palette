@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/alisowski/.nvm/versions/node/v8.11.0/bin/node /Users/alisowski/.nvm/versions/node/v8.11.0/bin/yarn add -D @types/font-color-contrast
+  /Users/alisowski/.nvm/versions/node/v8.11.0/bin/node /Users/alisowski/.nvm/versions/node/v8.11.0/bin/yarn add mix-color
 
 PATH: 
   /Users/alisowski/.nvm/versions/node/v8.11.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/opt/fzf/bin
@@ -14,7 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: https://registry.npmjs.intuit.com/@types%2ffont-color-contrast: Request "https://registry.npmjs.intuit.com/@types%2ffont-color-contrast" returned a 403
+  Error: https://registry.npmjs.intuit.com/mix-color: Request "https://registry.npmjs.intuit.com/mix-color" returned a 403
       at Request.params.callback [as _callback] (/Users/alisowski/.nvm/versions/node/v8.11.0/lib/node_modules/yarn/lib/cli.js:62135:18)
       at Request.self.callback (/Users/alisowski/.nvm/versions/node/v8.11.0/lib/node_modules/yarn/lib/cli.js:124482:22)
       at emitTwo (events.js:126:13)

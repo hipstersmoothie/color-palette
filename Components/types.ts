@@ -1,4 +1,4 @@
-export type ColorType = 900 | 800 | 700 | 600 | 500 | 400 | 300 | 100 | 200;
+export type ColorShade = 900 | 800 | 700 | 600 | 500 | 400 | 300 | 100 | 200;
 
 export enum ColorSection {
   primary = 'primary',
@@ -6,14 +6,25 @@ export enum ColorSection {
   accent = 'accent'
 }
 
-export interface ColorSwatch {
-  '900'?: string;
-  '800'?: string;
-  '700'?: string;
-  '600'?: string;
-  500?: string;
-  '400'?: string;
-  '300'?: string;
-  '200'?: string;
-  '100'?: string;
+export type ColorSwatch = Map<ColorShade, string>;
+
+export interface ColorMap {
+  [ColorSection.primary]: ColorSwatch[];
+  [ColorSection.grey]: ColorSwatch[];
+  [ColorSection.accent]: ColorSwatch[];
+}
+
+export interface ColorSelectionContextShape {
+  setCurrentColor: (
+    title: ColorSection,
+    index: number,
+    shade: ColorShade
+  ) => void;
+  setColor: (
+    title: ColorSection,
+    index: number,
+    shade: ColorShade,
+    color: string
+  ) => void;
+  currentColors: ColorMap;
 }
