@@ -25,6 +25,7 @@
     "no-non-null-assertion": false,
     "jsx-boolean-value": [true, "never"],
     "jsx-no-multiline-js": false,
+    "jsx-wrap-multiline": false,
     "max-classes-per-file": false,
     "member-ordering": false,
     "jsx-no-lambda": [false]

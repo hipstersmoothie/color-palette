@@ -19,14 +19,17 @@ const Modal: React.FunctionComponent<ModalProps> = ({
   submitText,
   isSubmitActive
 }) => (
-  <div style={{ textAlign: 'left' }} className={`modal has-text-dark ${isOpen ? 'is-active' : ''}`}>
+  <div
+    style={{ textAlign: 'left' }}
+    className={`modal has-text-dark ${isOpen ? 'is-active' : ''}`}
+  >
     <div className="modal-background" onClick={onClose} />
     <div className="modal-card">
       <header className="modal-card-head">
         <p className="modal-card-title">{title}</p>
         <button className="delete" aria-label="close" onClick={onClose} />
       </header>
-      <section className="modal-card-body">{children}</section>
+      <section className="modal-card-body body">{children}</section>
       <footer
         className="modal-card-foot"
         style={{ justifyContent: 'flex-end' }}
@@ -49,6 +52,12 @@ const Modal: React.FunctionComponent<ModalProps> = ({
       </footer>
     </div>
     <button className="modal-close is-large" aria-label="close" />
+
+    <style jsx>{`
+      .body {
+        padding: 0;
+      }
+    `}</style>
   </div>
 );
 

@@ -15,18 +15,24 @@ const Select: React.FunctionComponent<SelectProps> = ({
   className,
   placeholder
 }) => (
-  <div className={`field ${className}`}>
-    <label className="label">Format</label>
+  <div className={`field is-horizontal ${className}`}>
+    <div className="field-label is-normal">
+      <label className="label">Format</label>
+    </div>
 
-    <div className="control">
-      <div className="select is-medium is-fullwidth">
-        <select value={tag} onChange={onChooseTag}>
-          <option value="none">{placeholder}</option>
+    <div className="field-body">
+      <div className="field">
+        <div className="control">
+          <div className="select is-medium is-fullwidth">
+            <select value={tag} onChange={onChooseTag}>
+              <option value="none">{placeholder}</option>
 
-          {tags.map(tagOption => (
-            <option key={tagOption}>{tagOption}</option>
-          ))}
-        </select>
+              {tags.map(tagOption => (
+                <option key={tagOption}>{tagOption}</option>
+              ))}
+            </select>
+          </div>
+        </div>
       </div>
     </div>
 

@@ -61,6 +61,18 @@ const times = (n: number, func: (i: number) => any) => {
   return result;
 };
 
+function chunk(arr: any[], len: number) {
+  const chunks = [];
+  const n = arr.length;
+  let i = 0;
+
+  while (i < n) {
+    chunks.push(arr.slice(i, (i += len)));
+  }
+
+  return chunks;
+}
+
 const saveSass = (colors: { [key: string]: { [key: string]: string } }) => {
   let file = '';
 
@@ -187,6 +199,99 @@ class ExportButton extends React.Component<PreviewButtonProps> {
   };
 
   public render() {
+    const colors = chunk(
+      [
+        ...times(this.props.currentColors.primary.length, index => (
+          <Input
+            key={`primary-color-${index}`}
+            value={this.state.colorLabels[`primary-color-${index}`]}
+            onChange={this.setLabel('color', `primary-color-${index}`)}
+          />
+        )),
+        // tslint:disable-next-line jsx-wrap-multiline
+        <Input
+          key="grey"
+          value={this.state.colorLabels.grey}
+          onChange={this.setLabel('color', 'grey')}
+        />,
+        ...times(this.props.currentColors.accent.length, index => (
+          <Input
+            key={`accent-color-${index}`}
+            value={this.state.colorLabels[`accent-color-${index}`]}
+            onChange={this.setLabel('color', `accent-color-${index}`)}
+          />
+        ))
+      ],
+      2
+    ).map((pair, index) => (
+      <div className="field is-horizontal ">
+        <div className="field-label is-normal">
+          {index === 0 && <label className="label">Color Labels</label>}
+        </div>
+
+        <div className="field-body">{pair}</div>
+      </div>
+    ));
+
+    const shades = chunk(
+      [
+        <Input
+          key="100"
+          value={this.state.shadeLabels[100]}
+          onChange={this.setLabel('shade', 100)}
+        />,
+        <Input
+          key="200"
+          value={this.state.shadeLabels[200]}
+          onChange={this.setLabel('shade', 200)}
+        />,
+        <Input
+          key="300"
+          value={this.state.shadeLabels[300]}
+          onChange={this.setLabel('shade', 300)}
+        />,
+        <Input
+          key="400"
+          value={this.state.shadeLabels[400]}
+          onChange={this.setLabel('shade', 400)}
+        />,
+        <Input
+          key="500"
+          value={this.state.shadeLabels[500]}
+          onChange={this.setLabel('shade', 500)}
+        />,
+        <Input
+          key="600"
+          value={this.state.shadeLabels[600]}
+          onChange={this.setLabel('shade', 600)}
+        />,
+        <Input
+          key="700"
+          value={this.state.shadeLabels[700]}
+          onChange={this.setLabel('shade', 700)}
+        />,
+        <Input
+          key="800"
+          value={this.state.shadeLabels[800]}
+          onChange={this.setLabel('shade', 800)}
+        />,
+        <Input
+          key="900"
+          value={this.state.shadeLabels[900]}
+          onChange={this.setLabel('shade', 900)}
+        />
+      ],
+      3
+    ).map((pair, index) => (
+      <div className="field is-horizontal">
+        <div className="field-label is-normal">
+          {index === 0 && <label className="label">Shade Labels</label>}
+        </div>
+
+        <div className="field-body">{pair}</div>
+      </div>
+    ));
+
     return (
       <React.Fragment>
         <button className="button export-button" onClick={this.openModal}>
@@ -200,15 +305,13 @@ class ExportButton extends React.Component<PreviewButtonProps> {
           onSubmit={this.save}
           isSubmitActive={!this.state.format}
         >
-          <div className="columns field shades">
+          <div className="field shades">
             <Input
               label="File Name"
               value={this.state.fileName}
-              className="column is-half"
               onChange={e => this.setState({ fileName: e.currentTarget.value })}
             />
             <Select
-              className="column is-half"
               tags={['JSON', 'CSS', 'SASS']}
               placeholder="Select a format"
               tag={this.state.format}
@@ -216,86 +319,8 @@ class ExportButton extends React.Component<PreviewButtonProps> {
             />
           </div>
 
-          <label className="label">Color Labels</label>
-          <div className="columns is-multiline field shades">
-            {times(this.props.currentColors.primary.length, index => (
-              <Input
-                key={`primary-color-${index}`}
-                label={`Primary Color${
-                  this.props.currentColors.primary.length === 1 ? '' : index
-                }`}
-                value={this.state.colorLabels[`primary-color-${index}`]}
-                className="column is-one-third"
-                onChange={this.setLabel('color', `primary-color-${index}`)}
-              />
-            ))}
-            <Input
-              label="Grey"
-              key="grey"
-              value={this.state.colorLabels.grey}
-              className="column is-one-third"
-              onChange={this.setLabel('color', 'grey')}
-            />
-            {times(this.props.currentColors.accent.length, index => (
-              <Input
-                key={`accent-color-${index}`}
-                label={`Accent Color ${index}`}
-                value={this.state.colorLabels[`accent-color-${index}`]}
-                className="column is-one-third"
-                onChange={this.setLabel('color', `accent-color-${index}`)}
-              />
-            ))}
-          </div>
-
-          <label className="label">Shade Labels</label>
-
-          <div className="columns is-multiline field shades">
-            <Input
-              value={this.state.shadeLabels[100]}
-              className="column is-one-third"
-              onChange={this.setLabel('shade', 100)}
-            />
-            <Input
-              value={this.state.shadeLabels[200]}
-              className="column is-one-third"
-              onChange={this.setLabel('shade', 200)}
-            />
-            <Input
-              value={this.state.shadeLabels[300]}
-              className="column is-one-third"
-              onChange={this.setLabel('shade', 300)}
-            />
-            <Input
-              value={this.state.shadeLabels[400]}
-              className="column is-one-third"
-              onChange={this.setLabel('shade', 400)}
-            />
-            <Input
-              value={this.state.shadeLabels[500]}
-              className="column is-one-third"
-              onChange={this.setLabel('shade', 500)}
-            />
-            <Input
-              value={this.state.shadeLabels[600]}
-              className="column is-one-third"
-              onChange={this.setLabel('shade', 600)}
-            />
-            <Input
-              value={this.state.shadeLabels[700]}
-              className="column is-one-third"
-              onChange={this.setLabel('shade', 700)}
-            />
-            <Input
-              value={this.state.shadeLabels[800]}
-              className="column is-one-third"
-              onChange={this.setLabel('shade', 800)}
-            />
-            <Input
-              value={this.state.shadeLabels[900]}
-              className="column is-one-third"
-              onChange={this.setLabel('shade', 900)}
-            />
-          </div>
+          <div className="shades">{colors}</div>
+          <div className="shades">{shades}</div>
         </Modal>
         <style jsx>{`
           .export-button {
@@ -303,8 +328,11 @@ class ExportButton extends React.Component<PreviewButtonProps> {
             color: ${fontColor(this.props.color)};
             background-color: ${this.props.color};
           }
-          .shades > :global(*) {
-            margin: 0 !important;
+
+          .shades {
+            padding: 2rem 2rem 2rem 1rem;
+            margin-bottom: 0;
+            border-bottom: 1px solid lightgrey;
           }
         `}</style>
       </React.Fragment>
