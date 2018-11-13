@@ -1,3 +1,4 @@
+import { Button, Field, FieldBody, FieldLabel, Label } from 'bloomer';
 import FileSaver from 'file-saver';
 import fontColor from 'font-color-contrast';
 import * as React from 'react';
@@ -36,7 +37,10 @@ interface ExportState {
   };
 }
 
-const saveCSS = (colors: { [key: string]: { [key: string]: string } }) => {
+const saveCSS = (
+  colors: { [key: string]: { [key: string]: string } },
+  fileName = 'variables'
+) => {
   let file = ': root {';
 
   Object.entries(colors).map(([section, shades]) => {
@@ -48,7 +52,7 @@ const saveCSS = (colors: { [key: string]: { [key: string]: string } }) => {
   file += '\n}';
 
   const blob = new Blob([file], FILE_OPTIONS);
-  FileSaver.saveAs(blob, 'variables.css');
+  FileSaver.saveAs(blob, `${fileName}.css`);
 };
 
 const times = (n: number, func: (i: number) => any) => {
@@ -73,7 +77,10 @@ function chunk(arr: any[], len: number) {
   return chunks;
 }
 
-const saveSass = (colors: { [key: string]: { [key: string]: string } }) => {
+const saveSass = (
+  colors: { [key: string]: { [key: string]: string } },
+  fileName = 'variables'
+) => {
   let file = '';
 
   Object.entries(colors).map(([section, shades]) => {
@@ -83,7 +90,7 @@ const saveSass = (colors: { [key: string]: { [key: string]: string } }) => {
   });
 
   const blob = new Blob([file], FILE_OPTIONS);
-  FileSaver.saveAs(blob, 'variables.scss');
+  FileSaver.saveAs(blob, `${fileName}.scss`);
 };
 
 class ExportButton extends React.Component<PreviewButtonProps> {
@@ -173,14 +180,14 @@ class ExportButton extends React.Component<PreviewButtonProps> {
     switch (this.state.format) {
       case 'JSON': {
         const blob = new Blob([JSON.stringify(colors, null, 2)], FILE_OPTIONS);
-        FileSaver.saveAs(blob, 'variables.json');
+        FileSaver.saveAs(blob, `${this.state.fileName}.json`);
         break;
       }
       case 'CSS':
-        saveCSS(colors);
+        saveCSS(colors, this.state.fileName);
         break;
       case 'SASS':
-        saveSass(colors);
+        saveSass(colors, this.state.fileName);
         break;
       default:
     }
@@ -224,13 +231,13 @@ class ExportButton extends React.Component<PreviewButtonProps> {
       ],
       2
     ).map((pair, index) => (
-      <div className="field is-horizontal ">
-        <div className="field-label is-normal">
-          {index === 0 && <label className="label">Color Labels</label>}
-        </div>
+      <Field isHorizontal>
+        <FieldLabel isNormal>
+          {index === 0 && <Label>Color Labels</Label>}
+        </FieldLabel>
 
-        <div className="field-body">{pair}</div>
-      </div>
+        <FieldBody>{pair}</FieldBody>
+      </Field>
     ));
 
     const shades = chunk(
@@ -283,20 +290,20 @@ class ExportButton extends React.Component<PreviewButtonProps> {
       ],
       3
     ).map((pair, index) => (
-      <div className="field is-horizontal">
-        <div className="field-label is-normal">
-          {index === 0 && <label className="label">Shade Labels</label>}
-        </div>
+      <Field isHorizontal>
+        <FieldLabel isNormal>
+          {index === 0 && <Label>Shade Labels</Label>}
+        </FieldLabel>
 
-        <div className="field-body">{pair}</div>
-      </div>
+        <FieldBody>{pair}</FieldBody>
+      </Field>
     ));
 
     return (
       <React.Fragment>
-        <button className="button export-button" onClick={this.openModal}>
+        <Button className="export-button" onClick={this.openModal}>
           Export
-        </button>
+        </Button>
         <Modal
           submitText="Save"
           isOpen={this.state.modalOpen}
@@ -305,10 +312,11 @@ class ExportButton extends React.Component<PreviewButtonProps> {
           onSubmit={this.save}
           isSubmitActive={!this.state.format}
         >
-          <div className="field shades">
+          <Field className="shades-wrapper">
             <Input
               label="File Name"
               value={this.state.fileName}
+              // @ts-ignore
               onChange={e => this.setState({ fileName: e.currentTarget.value })}
             />
             <Select
@@ -317,19 +325,19 @@ class ExportButton extends React.Component<PreviewButtonProps> {
               tag={this.state.format}
               onChooseTag={this.setFormat}
             />
-          </div>
+          </Field>
 
-          <div className="shades">{colors}</div>
-          <div className="shades">{shades}</div>
+          <div className="shades-wrapper">{colors}</div>
+          <div className="shades-wrapper">{shades}</div>
         </Modal>
         <style jsx>{`
-          .export-button {
+          :global(.export-button) {
             border: none;
             color: ${fontColor(this.props.color)};
             background-color: ${this.props.color};
           }
 
-          .shades {
+          :global(.shades-wrapper) {
             padding: 2rem 2rem 2rem 1rem;
             margin-bottom: 0;
             border-bottom: 1px solid lightgrey;

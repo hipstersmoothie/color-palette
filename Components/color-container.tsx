@@ -1,7 +1,7 @@
+import { Button, Icon, Message, MessageBody, Title } from 'bloomer';
 import * as React from 'react';
 
 import ColorRow from '../Components/color-row';
-import Message from '../Components/message';
 import { ColorSection, ColorSwatch } from './types';
 
 interface ColorContainerProps {
@@ -39,17 +39,20 @@ export default class ColorContainer extends React.Component<
     return (
       <div className="color-container">
         <div className="header">
-          <h1 className="title has-text-white">{title} </h1>
-          <span
-            className="icon is-medium info-icon"
-            onClick={this.toggleMessage}
-          >
-            <i className="far fa-question-circle" />
+          <Title className="has-text-white">{title}</Title>
+          <span className="info-icon">
+            <Icon
+              isSize="medium"
+              className="far fa-question-circle"
+              onClick={this.toggleMessage}
+            />
           </span>
         </div>
 
         {ColorMessaging[title] && this.state.showMessage && (
-          <Message message={ColorMessaging[title]} />
+          <Message isColor="info" style={{ maxWidth: 530 }}>
+            <MessageBody>{ColorMessaging[title]}</MessageBody>
+          </Message>
         )}
 
         {colors.map((row, index) => (
@@ -64,12 +67,13 @@ export default class ColorContainer extends React.Component<
         {this.props.maxRows !== 1 &&
           (colors.length < this.props.maxRows! ||
             this.props.maxRows === Infinity) && (
-            <button
-              className="button is-dark add-button"
+            <Button
+              isColor="dark"
+              className="add-button"
               onClick={() => this.props.addRowToColor!(title)}
             >
               Add
-            </button>
+            </Button>
           )}
 
         <style jsx>{`
@@ -91,12 +95,11 @@ export default class ColorContainer extends React.Component<
             border-bottom: 1px solid white;
             padding-bottom: 0.75rem;
           }
-
-          .info-icon:hover {
+          :hover {
             color: #42abf3;
           }
 
-          .add-button {
+          :global(.add-button) {
             margin-left: auto;
           }
         `}</style>

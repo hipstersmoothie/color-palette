@@ -1,3 +1,15 @@
+import {
+  Button,
+  Delete,
+  Modal,
+  ModalBackground,
+  ModalCard,
+  ModalCardBody,
+  ModalCardFooter,
+  ModalCardHeader,
+  ModalCardTitle,
+  ModalClose
+} from 'bloomer';
 import * as React from 'react';
 
 interface ModalProps {
@@ -10,7 +22,7 @@ interface ModalProps {
   onSubmit?(): void;
 }
 
-const Modal: React.FunctionComponent<ModalProps> = ({
+const ModalComponent: React.FunctionComponent<ModalProps> = ({
   isOpen,
   title,
   children,
@@ -19,46 +31,42 @@ const Modal: React.FunctionComponent<ModalProps> = ({
   submitText,
   isSubmitActive
 }) => (
-  <div
+  <Modal
+    isActive={isOpen}
     style={{ textAlign: 'left' }}
-    className={`modal has-text-dark ${isOpen ? 'is-active' : ''}`}
+    className="has-text-dark"
   >
-    <div className="modal-background" onClick={onClose} />
-    <div className="modal-card">
-      <header className="modal-card-head">
-        <p className="modal-card-title">{title}</p>
-        <button className="delete" aria-label="close" onClick={onClose} />
-      </header>
-      <section className="modal-card-body body">{children}</section>
-      <footer
-        className="modal-card-foot"
-        style={{ justifyContent: 'flex-end' }}
-      >
-        <button className="button" onClick={onClose}>
-          Cancel
-        </button>
+    <ModalBackground onClick={onClose} />
+    <ModalCard>
+      <ModalCardHeader>
+        <ModalCardTitle>{title}</ModalCardTitle>
+        <Delete onClick={onClose} />
+      </ModalCardHeader>
+      <ModalCardBody className="palette-modal-body">{children}</ModalCardBody>
+      <ModalCardFooter style={{ justifyContent: 'flex-end' }}>
+        <Button onClick={onClose}>Cancel</Button>
         {onSubmit && (
-          <button
+          <Button
+            isColor="success"
             disabled={!!isSubmitActive}
-            className="button is-success"
             onClick={() => {
               onSubmit();
               onClose();
             }}
           >
             {submitText}
-          </button>
+          </Button>
         )}
-      </footer>
-    </div>
-    <button className="modal-close is-large" aria-label="close" />
+      </ModalCardFooter>
+    </ModalCard>
+    <ModalClose onClick={onClose} />
 
     <style jsx>{`
-      .body {
+      :global(.palette-modal-body) {
         padding: 0;
       }
     `}</style>
-  </div>
+  </Modal>
 );
 
-export default Modal;
+export default ModalComponent;

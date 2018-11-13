@@ -1,3 +1,4 @@
+import { Control, Field, FieldBody, FieldLabel, Label, Select } from 'bloomer';
 import React from 'react';
 
 interface SelectProps {
@@ -8,33 +9,36 @@ interface SelectProps {
   onChooseTag(event: React.ChangeEvent<HTMLSelectElement>): void;
 }
 
-const Select: React.FunctionComponent<SelectProps> = ({
+const SelectComponent: React.FunctionComponent<SelectProps> = ({
   tags,
   onChooseTag,
   tag,
   className,
   placeholder
 }) => (
-  <div className={`field is-horizontal ${className}`}>
-    <div className="field-label is-normal">
-      <label className="label">Format</label>
-    </div>
+  <Field isHorizontal className={className}>
+    <FieldLabel isNormal>
+      <Label>Format</Label>
+    </FieldLabel>
 
-    <div className="field-body">
-      <div className="field">
-        <div className="control">
-          <div className="select is-medium is-fullwidth">
-            <select value={tag} onChange={onChooseTag}>
-              <option value="none">{placeholder}</option>
+    <FieldBody>
+      <Field>
+        <Control>
+          <Select
+            value={tag}
+            onChange={onChooseTag}
+            isFullWidth
+            isSize="medium"
+          >
+            <option value="none">{placeholder}</option>
 
-              {tags.map(tagOption => (
-                <option key={tagOption}>{tagOption}</option>
-              ))}
-            </select>
-          </div>
-        </div>
-      </div>
-    </div>
+            {tags.map(tagOption => (
+              <option key={tagOption}>{tagOption}</option>
+            ))}
+          </Select>
+        </Control>
+      </Field>
+    </FieldBody>
 
     <style jsx>{`
       .wrapper {
@@ -45,7 +49,7 @@ const Select: React.FunctionComponent<SelectProps> = ({
         margin-right: 20px;
       }
     `}</style>
-  </div>
+  </Field>
 );
 
-export default Select;
+export default SelectComponent;

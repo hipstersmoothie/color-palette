@@ -1,3 +1,4 @@
+import { Button, Card, CardContent } from 'bloomer';
 import * as React from 'react';
 import Modal from './modal';
 
@@ -38,9 +39,9 @@ class PresetButton extends React.Component {
   public render() {
     return (
       <React.Fragment>
-        <button className="button preset-button" onClick={this.openModal}>
+        <Button className="preset-button" onClick={this.openModal}>
           Presets
-        </button>
+        </Button>
         <ColorSelectionContext.Consumer>
           {({ setColor }) => {
             const setContextColors = () => {
@@ -71,8 +72,8 @@ class PresetButton extends React.Component {
                 <div className="palette-wrapper">
                   {palettes.map(palette => (
                     <div className="palette-preview-root" key={palette.id}>
-                      <div
-                        className={`card palette-preview badge is-badge-danger is-badge-left ${
+                      <Card
+                        className={`palette-preview badge is-badge-danger is-badge-left ${
                           this.state.selectedPalette &&
                           this.state.selectedPalette.id === palette.id
                             ? 'active'
@@ -81,15 +82,15 @@ class PresetButton extends React.Component {
                         data-badge={`${palette.likes} ♥`}
                         onClick={() => this.setPalette(palette)}
                       >
-                        <div className="card-content">
+                        <CardContent>
                           <div className="colors-wrapper">
                             <Color color={palette.colors.primary} />
                             <Color color={palette.colors.accent1} />
                             <Color color={palette.colors.accent2} />
                             <Color color={palette.colors.accent3} />
                           </div>
-                        </div>
-                      </div>
+                        </CardContent>
+                      </Card>
                     </div>
                   ))}
                 </div>
@@ -99,7 +100,7 @@ class PresetButton extends React.Component {
         </ColorSelectionContext.Consumer>
 
         <style jsx>{`
-          .preset-button {
+          :global(.preset-button) {
             margin-right: 15px;
           }
           .colors-wrapper {
@@ -113,10 +114,10 @@ class PresetButton extends React.Component {
           .palette-preview-root {
             flex-basis: 50%;
           }
-          .palette-preview {
+          :global(.palette-preview) {
             margin: 10px;
           }
-          .active {
+          :global(.active) {
             box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2),
               0 6px 20px 0 rgba(0, 0, 0, 0.19);
           }

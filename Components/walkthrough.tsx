@@ -1,3 +1,4 @@
+import { Icon, Title } from 'bloomer';
 import * as React from 'react';
 import Joyride from 'react-joyride';
 
@@ -19,11 +20,12 @@ export default class Walkthrough extends React.Component {
   public render() {
     return (
       <React.Fragment>
-        <span
-          className="icon is-medium info-icon"
-          onClick={this.handleClickStart}
-        >
-          <i className="far fa-question-circle" />
+        <span className="info-icon">
+          <Icon
+            isSize="medium"
+            className="far fa-question-circle"
+            onClick={this.handleClickStart}
+          />
         </span>
 
         <Joyride
@@ -36,9 +38,9 @@ export default class Walkthrough extends React.Component {
             {
               content: (
                 <div>
-                  <h2 className="title is-4">
+                  <Title isSize={4}>
                     Welcome to hipstersmoothie's Color Palette Helper
-                  </h2>
+                  </Title>
 
                   <p>
                     This tool was inspired by{' '}
@@ -56,24 +58,24 @@ export default class Walkthrough extends React.Component {
             },
             {
               content: (
-                <h2>Start by choosing the default shade for each color.</h2>
+                <p>Start by choosing the default shade for each color.</p>
               ),
               target: '.default-shade'
             },
             {
-              content: <h2>Then choose the darkest shade</h2>,
+              content: <p>Then choose the darkest shade</p>,
               target: '.darkest-shade'
             },
             {
-              content: <h2>And the lightest shade</h2>,
+              content: <p>And the lightest shade</p>,
               target: '.lightest-shade'
             },
             {
               content: (
                 <div>
-                  <h2 className="title is-4">
+                  <Title isSize={4}>
                     After that fill in the rest of the in between values
-                  </h2>
+                  </Title>
                   <p style={{ paddingBottom: 10 }}>
                     Once done you will have all the necassary shades of a color
                     to build an expressive UI!
@@ -86,31 +88,29 @@ export default class Walkthrough extends React.Component {
             },
             {
               content: (
-                <h2>
+                <p>
                   By default this tool will automatically fill in the shades
                   when you pick a default color. To turn off this behavior use
                   this option.
-                </h2>
+                </p>
               ),
               target: '#auto-scale-wrapper'
             },
             {
               content: (
-                <h2 className="title is-4">
+                <Title isSize={4}>
                   Choose some beautiful presets to help get you started or
                   inspire you.
-                </h2>
+                </Title>
               ),
               target: '.preset-button'
             },
             {
               content: (
-                <div>
-                  <h2 className="title is-4">
-                    Once you're done export your color palette to a variety of
-                    formats.
-                  </h2>
-                </div>
+                <Title isSize={4}>
+                  Once you're done export your color palette to a variety of
+                  formats.
+                </Title>
               ),
               target: '.export-button'
             }

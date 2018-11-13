@@ -1,3 +1,13 @@
+import {
+  Control,
+  Field,
+  FieldBody,
+  FieldLabel,
+  Help,
+  Icon,
+  Input,
+  Label
+} from 'bloomer';
 import React from 'react';
 
 interface InputProps {
@@ -6,10 +16,10 @@ interface InputProps {
   error?: string;
   placeholder?: string;
   className?: string;
-  onChange?(event: React.ChangeEvent<HTMLInputElement>): void;
+  onChange?(event: React.ChangeEvent<HTMLElement>): void;
 }
 
-const Input: React.FunctionComponent<InputProps> = ({
+const InputComponent: React.FunctionComponent<InputProps> = ({
   value,
   label,
   onChange,
@@ -17,18 +27,18 @@ const Input: React.FunctionComponent<InputProps> = ({
   placeholder,
   error
 }) => (
-  <div className={`field is-horizontal ${className}`}>
+  <Field isHorizontal className={className}>
     {label && (
-      <div className="field-label is-normal">
-        <label className="label">{label}</label>
-      </div>
+      <FieldLabel isNormal>
+        <Label>{label}</Label>
+      </FieldLabel>
     )}
-    <div className="field-body">
-      <div className="field">
-        <div className="control has-icons-right">
-          <input
-            className={`input is-medium ${error ? 'is-danger' : ''}`}
-            type="text"
+    <FieldBody>
+      <Field>
+        <Control hasIcons="right">
+          <Input
+            isSize="medium"
+            isColor={error ? 'is-danger' : undefined}
             placeholder={placeholder}
             value={value}
             onChange={onChange}
@@ -36,25 +46,31 @@ const Input: React.FunctionComponent<InputProps> = ({
           />
 
           {error && (
-            <span className="icon is-medium is-right">
-              <i className="fas fa-exclamation-triangle" />
-            </span>
+            <Icon
+              isSize="medium"
+              isAlign="right"
+              className="fas fa-exclamation-triangle"
+            />
           )}
-        </div>
-      </div>
-    </div>
+        </Control>
+      </Field>
+    </FieldBody>
 
-    {error && <p className="help is-danger error-text">{error}</p>}
+    {error && (
+      <Help isColor="danger" className="error-text">
+        {error}
+      </Help>
+    )}
 
     <style jsx>{`
-      .error-text::first-letter {
+      :globa(.error-text::first-letter) {
         text-transform: capitalize;
       }
     `}</style>
-  </div>
+  </Field>
 );
 
-Input.defaultProps = {
+InputComponent.defaultProps = {
   placeholder: undefined,
   value: undefined,
   error: undefined,
@@ -62,4 +78,4 @@ Input.defaultProps = {
   className: ''
 };
 
-export default Input;
+export default InputComponent;

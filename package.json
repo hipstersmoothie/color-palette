@@ -69,6 +69,7 @@
     "@types/react-joyride": "^2.0.1",
     "@types/styled-jsx": "^2.2.7",
     "@types/tinycolor2": "^1.4.1",
+    "bloomer": "^0.6.5",
     "bulma-badge": "^2.0.0",
     "bulma-checkradio": "^2.1.0",
     "file-saver": "^2.0.0-rc.4",

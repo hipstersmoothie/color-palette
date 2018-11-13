@@ -1,3 +1,4 @@
+import { Field } from 'bloomer';
 import fontColor from 'font-color-contrast';
 import * as React from 'react';
 
@@ -16,7 +17,7 @@ const CheckBox: React.FunctionComponent<CheckBoxProps> = ({
   primaryColor,
   onChange
 }) => (
-  <div className="field check-box" id={`${id}-wrapper`}>
+  <Field className="check-box" id={`${id}-wrapper`}>
     <input
       className="is-checkradio is-white radio"
       id={id}
@@ -42,7 +43,7 @@ const CheckBox: React.FunctionComponent<CheckBoxProps> = ({
         border-color: ${primaryColor} !important;
       }
     `}</style>
-  </div>
+  </Field>
 );
 
 export default CheckBox;
