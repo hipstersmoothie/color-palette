@@ -1,3 +1,5 @@
 node_modules/
 ./coverage
 .next
+yarn-error.log
+out
