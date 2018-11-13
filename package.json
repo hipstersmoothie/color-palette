@@ -14,7 +14,7 @@
     "start": "next start",
     "build:typescript": "tsc",
     "lint": "tslint -p . --format stylish",
-    "release": "npm run build && npm run export && touch out/.nojekyll && push-dir --dir=out --branch=gh-pages --cleanup --verbose"
+    "release": "./scripts/release.sh"
   },
   "devDependencies": {
     "@babel/core": "^7.1.5",
