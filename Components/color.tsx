@@ -4,11 +4,16 @@ import { ColorShade } from './types';
 interface ColorProps {
   color?: string;
   shade?: ColorShade;
-  showLabel: boolean;
+  showLabel?: boolean;
   onClick?(event: React.MouseEvent<HTMLDivElement>): void;
 }
 
-const Color: React.FunctionComponent<ColorProps> = ({ color, onClick, shade, showLabel }) => {
+const Color: React.FunctionComponent<ColorProps> = ({
+  color,
+  onClick,
+  shade,
+  showLabel
+}) => {
   const className =
     shade === 500
       ? 'default-shade'
@@ -40,9 +45,9 @@ const Color: React.FunctionComponent<ColorProps> = ({ color, onClick, shade, sho
         }
 
         @media screen and (min-width: 1100px) {
-        .wrapper:not(:last-of-type) {
-          margin-right: 10px;
-        }
+          .wrapper:not(:last-of-type) {
+            margin-right: 10px;
+          }
         }
       `}</style>
     </div>
