@@ -1,5 +1,5 @@
-import * as React from 'react';
 import fontColor from 'font-color-contrast';
+import * as React from 'react';
 
 interface CheckBoxProps {
   id: string;
@@ -9,7 +9,7 @@ interface CheckBoxProps {
   onChange(event: React.ChangeEvent<HTMLInputElement>): void;
 }
 
-const CheckBox: React.SFC<CheckBoxProps> = ({
+const CheckBox: React.FunctionComponent<CheckBoxProps> = ({
   isChecked,
   id,
   label,

@@ -8,7 +8,7 @@ interface ColorProps {
   onClick?(event: React.MouseEvent<HTMLDivElement>): void;
 }
 
-const Color: React.SFC<ColorProps> = ({ color, onClick, shade, showLabel }) => {
+const Color: React.FunctionComponent<ColorProps> = ({ color, onClick, shade, showLabel }) => {
   const className =
     shade === 500
       ? 'default-shade'

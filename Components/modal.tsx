@@ -10,7 +10,7 @@ interface ModalProps {
   onSubmit?(): void;
 }
 
-const Modal: React.SFC<ModalProps> = ({
+const Modal: React.FunctionComponent<ModalProps> = ({
   isOpen,
   title,
   children,

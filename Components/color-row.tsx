@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import Color from '../Components/color';
 import ColorSelectionContext from './color-selection-context';
-import { ColorSwatch, ColorSection, ColorShade } from './types';
 import OptionsContext from './options-context';
+import { ColorSection, ColorShade, ColorSwatch } from './types';
 
 interface ColorRowProps {
   colors: ColorSwatch;
@@ -11,7 +11,7 @@ interface ColorRowProps {
   title: ColorSection;
 }
 
-const ColorRow: React.SFC<ColorRowProps> = ({ title, index, colors }) => (
+const ColorRow: React.FunctionComponent<ColorRowProps> = ({ title, index, colors }) => (
   <OptionsContext.Consumer>
     {options => (
       <ColorSelectionContext.Consumer>

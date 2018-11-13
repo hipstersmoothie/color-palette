@@ -9,7 +9,7 @@ interface InputProps {
   onChange?(event: React.ChangeEvent<HTMLInputElement>): void;
 }
 
-const Input: React.SFC<InputProps> = ({
+const Input: React.FunctionComponent<InputProps> = ({
   value,
   label,
   onChange,

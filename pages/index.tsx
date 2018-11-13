@@ -8,10 +8,10 @@ import ColorContainer from '../Components/color-container';
 import ColorSelectionContext from '../Components/color-selection-context';
 import ExportButton from '../Components/export-button';
 import MacWindow from '../Components/mac-window';
-import PresetButton from '../Components/preset-button';
-import { makeColor } from '../Components/utils';
 import Options from '../Components/options';
 import OptionsContext from '../Components/options-context';
+import PresetButton from '../Components/preset-button';
+import { makeColor } from '../Components/utils';
 import Walkthrough from '../Components/walkthrough';
 
 interface PreviewProps {
@@ -19,7 +19,7 @@ interface PreviewProps {
   color: string;
 }
 
-const Preview: React.SFC<PreviewProps> = ({ children, color }) => (
+const Preview: React.FunctionComponent<PreviewProps> = ({ children, color }) => (
   <section className="header">
     <h1 className="title has-text-centered preview-title">
       Color Palette Helper
@@ -85,7 +85,7 @@ export default class Index extends React.Component {
     autoScale: true
   };
 
-  private setColor = (
+  private readonly setColor = (
     section: ColorSection,
     index: number,
     shade: ColorShade,
@@ -121,7 +121,7 @@ export default class Index extends React.Component {
     this.setState({ currentColors: this.state.currentColors });
   };
 
-  private setCurrentColor = (
+  private readonly setCurrentColor = (
     section: ColorSection,
     index: number,
     shade: ColorShade
@@ -131,13 +131,13 @@ export default class Index extends React.Component {
     });
   };
 
-  private addRowToColor = (section: ColorSection) => {
+  private readonly addRowToColor = (section: ColorSection) => {
     const currentSection = this.state.currentColors[section];
     currentSection.push(makeColor());
     this.setState({ currentColors: this.state.currentColors });
   };
 
-  private toggleCheckBox = (key: 'showLabels') => () => {
+  private readonly toggleCheckBox = (key: 'showLabels') => () => {
     this.setState({
       [key]: !this.state[key]
     });
@@ -227,7 +227,7 @@ export default class Index extends React.Component {
             :global(.sections::-webkit-scrollbar) {
               display: none;
             }
-            
+
             :global(.chrome-picker) {
               margin: auto;
               width: 80vw !important;
@@ -260,7 +260,7 @@ export default class Index extends React.Component {
             @media screen and (min-width: 767px) {
               :global(.sections) {
                 max-height: 100vh;
-          
+
                 overflow: scroll;
               }
               .root {

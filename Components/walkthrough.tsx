@@ -1,12 +1,14 @@
 import * as React from 'react';
-import Joyride, { State } from 'react-joyride';
+import Joyride from 'react-joyride';
 
 export default class Walkthrough extends React.Component {
   public state = {
     run: false
   };
 
-  private handleClickStart = (event: React.MouseEvent<HTMLButtonElement>) => {
+  private readonly handleClickStart = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     event.preventDefault();
 
     this.setState({

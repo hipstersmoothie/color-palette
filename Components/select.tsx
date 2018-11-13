@@ -8,7 +8,7 @@ interface SelectProps {
   onChooseTag(event: React.ChangeEvent<HTMLSelectElement>): void;
 }
 
-const Select: React.SFC<SelectProps> = ({
+const Select: React.FunctionComponent<SelectProps> = ({
   tags,
   onChooseTag,
   tag,

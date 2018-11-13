@@ -7,7 +7,7 @@ interface OptionsProps {
   primaryColor: string;
 }
 
-const Options: React.SFC<OptionsProps> = ({ primaryColor }) => (
+const Options: React.FunctionComponent<OptionsProps> = ({ primaryColor }) => (
   <OptionsContext.Consumer>
     {({ showLabels, autoScale, toggleCheckBox }) => (
       <React.Fragment>

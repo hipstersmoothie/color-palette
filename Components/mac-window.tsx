@@ -49,7 +49,7 @@ interface MacWindowProps {
   hasButtons?: boolean;
 }
 
-const MacWindow: React.SFC<MacWindowProps> = ({
+const MacWindow: React.FunctionComponent<MacWindowProps> = ({
   className,
   hasButtons,
   children
