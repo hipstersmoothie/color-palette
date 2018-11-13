@@ -1,0 +1,97 @@
+version: 2
+
+defaults: &defaults
+  working_directory: ~/color-palette
+  docker:
+    - image: circleci/node:latest-browsers
+
+jobs:
+  install:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            # Find a cache corresponding to this specific package.json checksum
+            # when this file is changed, this key will fail
+            - color-palette-{{ .Branch }}-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
+            - color-palette-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - color-palette-{{ .Branch }}
+            # Find the most recent cache used from any branch
+            - color-palette-master
+            - color-palette-
+      - run:
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile
+      - save_cache:
+          key: color-palette-{{ .Branch }}-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
+          paths:
+            - node_modules
+            - ~/.cache/yarn
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+
+  lint:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/color-palette
+      - run:
+          name: Lint
+          command: yarn lint
+
+  build:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/color-palette
+      - run:
+          name: Build
+          command: yarn build:typescript
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+
+  release:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/color-palette
+      - run:
+          name: Release
+          command: yarn release
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - install:
+          filters:
+            tags:
+              only: /.*/
+
+      - lint:
+          requires:
+            - install
+          filters:
+            tags:
+              only: /.*/
+
+      - build:
+          requires:
+            - install
+          filters:
+            tags:
+              only: /.*/
+
+      - release:
+          requires:
+            - lint
+            - build
+          filters:
+            branches:
+              only:
+                - master

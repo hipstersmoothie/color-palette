@@ -12,7 +12,8 @@
     "build": "next build",
     "start": "next start",
     "build:typescript": "tsc",
-    "lint": "tslint -p . --format stylish"
+    "lint": "tslint -p . --format stylish",
+    "release": "npm run build && npm run export && touch out/.nojekyll && push-dir --dir=out --branch=gh-pages --cleanup --verbose"
   },
   "devDependencies": {
     "@babel/core": "^7.1.5",
@@ -23,6 +24,7 @@
     "lint-staged": "^8.0.4",
     "next": "^7.0.2",
     "prettier": "^1.15.1",
+    "push-dir": "^0.4.1",
     "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.15.0",
     "tslint-react": "^3.6.0",
@@ -71,6 +73,7 @@
     "file-saver": "^2.0.0-rc.4",
     "font-color-contrast": "^1.0.3",
     "mix-color": "^1.0.3",
+    "prop-types": "^15.6.2",
     "react": "^16.6.1",
     "react-color": "^2.14.1",
     "react-dom": "^16.6.1",
