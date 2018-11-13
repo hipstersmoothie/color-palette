@@ -95,7 +95,7 @@ export default class ColorContainer extends React.Component<
             border-bottom: 1px solid white;
             padding-bottom: 0.75rem;
           }
-          :hover {
+          .info-icon:hover {
             color: #42abf3;
           }
 
